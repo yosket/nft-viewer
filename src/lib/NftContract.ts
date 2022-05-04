@@ -1,16 +1,18 @@
 import { ethers } from 'ethers'
-import ERC721Enumerable from '../assets/ERC721Enumerable.abi.json'
+import {
+  ERC721Enumerable,
+  ERC721Enumerable__factory,
+} from '../types/ethers-contracts'
 
 export class NftContract {
-  private _contract: ethers.Contract
+  private _contract: ERC721Enumerable
 
   constructor(
     contractAddress: string,
     provider: ethers.providers.ExternalProvider
   ) {
-    this._contract = new ethers.Contract(
+    this._contract = ERC721Enumerable__factory.connect(
       contractAddress,
-      ERC721Enumerable,
       new ethers.providers.Web3Provider(provider)
     )
   }
