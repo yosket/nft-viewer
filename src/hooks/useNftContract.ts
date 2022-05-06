@@ -1,25 +1,22 @@
 import { useEffect, useState } from 'react'
+import { useSigner } from 'wagmi'
 import { NftContract } from '../lib/NftContract'
 
 export const useNftContract = (contractAddress: string) => {
+  const { data: signer } = useSigner()
   const [nftContract, setNftContract] = useState<NftContract>()
+  const [name, setName] = useState<string>()
 
   useEffect(() => {
-    if (!contractAddress) {
+    if (!contractAddress || !signer) {
       return
     }
 
-    if (!window.ethereum) {
-      throw new Error('has no wallet')
-    }
+    const contract = new NftContract(contractAddress, signer)
+    setNftContract(contract)
 
-    window.ethereum?.request!({
-      method: 'eth_requestAccounts',
-    }).then(() => {
-      const nftContract = new NftContract(contractAddress, window.ethereum!)
-      setNftContract(nftContract)
-    })
-  }, [contractAddress])
+    contract.name().then(setName)
+  }, [contractAddress, signer])
 
-  return nftContract
+  return { nftContract, name }
 }

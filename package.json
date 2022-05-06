@@ -11,10 +11,13 @@
     "postinstall": "yarn run typechain"
   },
   "dependencies": {
+    "@blazity/next-image-proxy": "^1.0.2",
+    "classnames": "^2.3.1",
     "ethers": "^5.6.5",
     "next": "12.1.6",
     "react": "18.1.0",
-    "react-dom": "18.1.0"
+    "react-dom": "18.1.0",
+    "wagmi": "^0.3.2"
   },
   "devDependencies": {
     "@typechain/ethers-v5": "^10.0.0",

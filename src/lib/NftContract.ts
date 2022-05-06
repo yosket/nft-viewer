@@ -9,12 +9,16 @@ export class NftContract {
 
   constructor(
     contractAddress: string,
-    provider: ethers.providers.ExternalProvider
+    signerOrProvider: ethers.providers.Provider | ethers.Signer
   ) {
     this._contract = ERC721Enumerable__factory.connect(
       contractAddress,
-      new ethers.providers.Web3Provider(provider)
+      signerOrProvider
     )
+  }
+
+  async name() {
+    return await this._contract.name()
   }
 
   async totalSupply() {

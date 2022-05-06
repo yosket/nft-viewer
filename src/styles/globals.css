@@ -1,3 +1,10 @@
 @tailwind base;
+
+@layer base {
+  body {
+    @apply bg-slate-100 min-h-screen;
+  }
+}
+
 @tailwind components;
 @tailwind utilities;

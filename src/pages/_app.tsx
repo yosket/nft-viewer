@@ -1,15 +1,17 @@
-import { providers } from 'ethers'
 import type { AppProps } from 'next/app'
+import { createClient, Provider } from 'wagmi'
+import AppHeader from '../components/AppHeader'
 import '../styles/globals.css'
 
-declare global {
-  interface Window {
-    ethereum?: providers.ExternalProvider
-  }
-}
+const client = createClient()
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <Provider client={client}>
+      <AppHeader />
+      <Component {...pageProps} />
+    </Provider>
+  )
 }
 
 export default MyApp
