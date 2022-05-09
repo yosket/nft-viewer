@@ -24,3 +24,19 @@ export const getMetadataList = async (contract: ERC721Enumerable) => {
   )
   return await Promise.all(tokenUris.map((uri) => fetchMetadata(uri)))
 }
+
+export const getMyMetadataList = async (
+  contract: ERC721Enumerable,
+  address: string
+) => {
+  const balance = (await contract.balanceOf(address)).toNumber()
+  const tokenIds = await Promise.all(
+    Array.from(Array(balance).keys()).map((i) =>
+      contract.tokenOfOwnerByIndex(address, i)
+    )
+  )
+  const tokenUris = await Promise.all(
+    tokenIds.map((id) => contract.tokenURI(id))
+  )
+  return await Promise.all(tokenUris.map((uri) => fetchMetadata(uri)))
+}
