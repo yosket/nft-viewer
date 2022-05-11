@@ -5,12 +5,8 @@ import AppPage from '../../../../components/AppPage'
 import NftSummery from '../../../../components/NftSummery'
 import { getMyMetadataList } from '../../../../lib/getMetadataList'
 import { getProvider } from '../../../../lib/getProvider'
+import { getStoredContracts } from '../../../../lib/getStoredContracts'
 import { ERC721Enumerable__factory } from '../../../../types/ethers-contracts'
-
-const contracts = [
-  { chainId: 1, address: '0x273f7F8E6489682Df756151F5525576E322d51A3' },
-  { chainId: 1, address: '0xdceaf1652a131F32a821468Dc03A92df0edd86Ea' },
-]
 
 type Props = {
   myMetadataList: any[]
@@ -23,6 +19,8 @@ export const getStaticPaths: GetStaticPaths = () => {
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const chainId = Number(params?.chainId)
   const address = params?.address as string
+
+  const contracts = await getStoredContracts()
 
   const promises = contracts
     .filter((c) => c.chainId === chainId)
