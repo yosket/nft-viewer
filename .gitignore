@@ -35,3 +35,4 @@ yarn-error.log*
 *.tsbuildinfo
 
 /src/types/ethers-contracts
+/public/icons/*

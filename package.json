@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "typechain": "typechain --target=ethers-v5 --out-dir src/types/ethers-contracts 'src/assets/abi/**/*.json'",
-    "postinstall": "yarn run typechain"
+    "update-icons": "node scripts/update-icons.mjs",
+    "postinstall": "yarn run typechain && update-icons"
   },
   "dependencies": {
     "@blazity/next-image-proxy": "^1.0.2",
@@ -28,6 +29,7 @@
     "autoprefixer": "^10.4.7",
     "eslint": "8.14.0",
     "eslint-config-next": "12.1.6",
+    "node-fetch": "^3.2.4",
     "postcss": "^8.4.13",
     "tailwindcss": "^3.0.24",
     "typechain": "^8.0.0",
