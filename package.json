@@ -9,7 +9,7 @@
     "lint": "next lint",
     "typechain": "typechain --target=ethers-v5 --out-dir src/types/ethers-contracts 'src/assets/abi/**/*.json'",
     "update-icons": "node scripts/update-icons.mjs",
-    "postinstall": "yarn run typechain && update-icons"
+    "postinstall": "yarn run typechain && yarn run update-icons"
   },
   "dependencies": {
     "@blazity/next-image-proxy": "^1.0.2",
